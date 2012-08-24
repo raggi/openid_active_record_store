@@ -12,15 +12,15 @@ module OpenID
       # on the character set of the server_url.  In particular, expect to see
       # unescaped non-url-safe characters in the server_url field.
       def store_association(server_url, association)
-        OpenidAssociation.create!(
-          :server_url => server_url,
-          :target     => targetize(server_url),
-          :handle     => association.handle,
-          :secret     => association.secret,
-          :issued_at  => association.issued,
-          :lifetime   => association.lifetime,
-          :assoc_type => association.assoc_type
-        )
+        OpenidAssociation.create! do |n|
+          n.server_url = server_url
+          n.target     = targetize(server_url)
+          n.handle     = association.handle
+          n.secret     = association.secret
+          n.issued_at  = association.issued
+          n.lifetime   = association.lifetime
+          n.assoc_type = association.assoc_type
+        end
         true
       end
 
@@ -108,11 +108,11 @@ module OpenID
       end
 
       def create_nonce(server_url, timestamp, salt)
-        OpenidNonce.create!(
-          :target     => targetize(server_url),
-          :server_url => server_url,
-          :timestamp  => timestamp
-        )
+        OpenidNonce.create! do |n|
+          n.target     = targetize(server_url)
+          n.server_url = server_url
+          n.timestamp  = timestamp
+        end
         true
       end
 
