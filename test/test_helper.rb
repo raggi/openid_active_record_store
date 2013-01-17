@@ -10,8 +10,10 @@ db = {
 
 # XXX  yes, there are better ways. patches please!
 
-system "echo 'drop   database #{db[:database]};' | mysql5 -uroot" rescue nil
-system "echo 'create database #{db[:database]};' | mysql5 -uroot"
+ActiveRecord::Base.establish_connection db
+
+ActiveRecord::Base.connection.drop_database db[:database]
+ActiveRecord::Base.connection.create_database db[:database]
 
 ActiveRecord::Base.establish_connection db
 

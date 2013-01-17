@@ -8,6 +8,8 @@ class CreateOpenidNonces < ActiveRecord::Migration
       t.text      :server_url
       t.timestamps
     end
+    
+    add_index :openid_nonces, [:target, :timestamp], :name => 'for_existence_lookups'
   end
 
   def self.down

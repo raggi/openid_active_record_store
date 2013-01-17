@@ -21,11 +21,20 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3"])
+      s.add_runtime_dependency("activerecord", ["~> 3"])
+      s.add_runtime_dependency("ruby-openid", ["~> 2.2"])
+      s.add_development_dependency("rails", ["~> 3"])
+      s.add_development_dependency("mysql2", ["~> 0.3"])
     else
-      s.add_dependency(%q<rails>, [">= 3"])
+      s.add_dependency("activerecord", ["~> 3"])
+      s.add_dependency("ruby-openid", ["~> 2.2"])
+      s.add_development_dependency("rails", ["~> 3"])
+      s.add_development_dependency("mysql2", ["~> 0.3"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3"])
+    s.add_dependency("activerecord", ["~> 3"])
+    s.add_dependency("ruby-openid", ["~> 2.2"])
+    s.add_development_dependency("rails", ["~> 3"])
+    s.add_development_dependency("mysql2", ["~> 0.3"])
   end
 end
